@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+</head>
+<body>
+
+<form  name="input" action="" method="get">
+<textarea rows="30" cols="50" id="listA"></textarea>
+<textarea rows="30" cols="50" id="listB"></textarea><br>
+<textarea rows="4" cols="104" id="result">Result</textarea>
+</form>
+
+<div>Count ListA:  <span  id="listAA"></span></div>
+<div>Count ListB:  <span  id="listBB"></span></div>
+<div>Count Result: <span  id="listCC"></span></div>
+
+<button onclick="cross()">Cross</button>
+<button onclick="count()">Count</button>
+
+<script>
+var listA;
+var listB;
+var listC=[];
+var listD;
+
+function count(){
+document.getElementById('listAA').innerHTML=document.getElementById("listA").value.replace(/\n/g, " ").split(" ").length;
+document.getElementById('listBB').innerHTML=document.getElementById("listB").value.replace(/\n/g, " ").split(" ").length;;
+document.getElementById('listCC').innerHTML=document.getElementById("result").value.replace(/\n/g, " ").split(" ").length;;
+};
+
+function dcross(cell,array){
+	var temp;
+	for(var i=0;i<array.length;i++){
+		if(cell.search(array[i])!=-1||array[i].search(cell)!=-1){
+			temp=true;
+															};
+									};
+	if(temp==true){
+	return false;
+				}
+	else{
+	return cell;
+	}
+							};	
+							
+function cross(){
+listA=document.getElementById("listA").value.replace(/\n/g, " ").toLowerCase();
+listB=document.getElementById("listB").value.replace(/\n/g, " ").toLowerCase();
+listC=[];
+listD=[];
+
+listA=listA.split(" ");
+listB=listB.split(" ");
+
+listA=listA.sort();
+listB=listB.sort();
+
+for(var i=0;i<listA.length;i++){
+	if(listA[i]!=listA[i+1]){
+		listD.push(listA[i]);
+							}		
+								};
+
+for(var j=0;j<listD.length;j++){
+	if(dcross(listD[j],listB)==false){
+		listC.push(listD[j]);
+								};
+		
+
+								};
+document.getElementById('result').value = listC.toString().replace(/,/g,"\n");
+count();
+				};	
+</script>
+</body>
+</html>
+
+
